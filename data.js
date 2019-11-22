@@ -1,4 +1,4 @@
-const data = require('../csv/json-data.js')
+const data = require('./csv/json-data.js')
 
 const synthesizePlayers = () => {
   return data.reduce((acc, currentPlayer) => {
@@ -23,5 +23,6 @@ const cleanPlayers = () => {
 }
 
 const playerData = cleanPlayers();
+// console.log('player data', playerData.slice(0, 50))
 
 module.exports = playerData;

@@ -41,4 +41,4 @@ const leagues = [
   }
 ]
 
-module.exports = leagueData
+module.exports = leagues
