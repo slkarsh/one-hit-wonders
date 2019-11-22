@@ -10,6 +10,18 @@ const synthesizePlayers = () => {
 }
 
 
-const playerData = synthesizePlayers();
+const fullPlayerData = synthesizePlayers();
+
+const cleanPlayers = () => {
+  return fullPlayerData.map(player => {
+    const { name, sport_name, league, team } = player
+    const splitName = name.split(' ')
+    const first_name = splitName[0]
+    const last_name = splitName[1]
+    return { first_name, last_name, sport_name, league, team}
+  })
+}
+
+const playerData = cleanPlayers();
 
 module.exports = playerData;
