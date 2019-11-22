@@ -6,19 +6,19 @@ const createLeague = (knex, league) => {
   return knex('leagues').insert({
     league: league.league,
     sport_name: league.sport
-  }, 'id')
-    .then(leagueId => {
+  }, 'league')
+    .then(league => {
       let playerPromises = []
 
       playersData.forEach(player => {
         
-        if (player.league === league.league) {
+        if (player.league === league[0]) {
           playerPromises.push(
             createPlayer(knex, {
               first_name: player.first_name,
               last_name: player.last_name,
               team: player.team,
-              league_id: leagueId[0]
+              league_name: league[0]
             })
           )
         }
