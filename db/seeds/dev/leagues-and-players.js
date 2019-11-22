@@ -29,7 +29,7 @@ const createLeague = (knex, league) => {
 }
 
 const createPlayer = (knex, player) => {
-  console.log('player', player)
+  // console.log('player', player)
   return knex('players').insert(player)
 }
 
@@ -41,7 +41,7 @@ exports.seed = (knex) => {
    .then(() => {
      let leaguePromises = []
 
-     leagueData.forEach(league => {
+     leagueData.map(league => {
        leaguePromises.push(createLeague(knex, league))
      })
 
