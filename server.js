@@ -1,16 +1,18 @@
-const fs = require('fs')
-const csv = require('csv-parser')
+// const fs = require('fs')
+// const csv = require('csv-parser')
 const express = require('express')
 const app = express()
 const results = []
 
-fs.createReadStream('./csv/onehitwonders.csv')
-  .pipe(csv())
-  .on('data', (data) => results.push(data))
-  .on('end', () => {
-    const example = results.slice(0, 10)
-    console.log(example)
-  })
+const environment = process.env.NODE_ENV || 'development'
+
+// fs.createReadStream('./csv/onehitwonders.csv')
+//   .pipe(csv())
+//   .on('data', (data) => results.push(data))
+//   .on('end', () => {
+//     const example = results.slice(0, 10)
+//     console.log(example)
+//   })
 
 app.set('port', process.env.PORT || 3000)
 app.use(express.json())
