@@ -128,10 +128,3 @@ app.delete('/api/v1/players/:id', (request, response) => {
     })
 })
 
-//first_name, last_name, leage_name, team
-
-// app.get('/api/v1/sports/:id', (request, response) => {
-//   const { id } = request.params
-
-//   const sport = app.locals.info.find(item => item.id === id)
-// })
