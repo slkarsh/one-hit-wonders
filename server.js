@@ -94,7 +94,27 @@ app.post('/api/v1/leagues', (request, response) => {
     })
 })
 
+app.post('/api/v1/players', (request, response) => {
+  const player = request.body
+  
+  for (let requiredParameter of ['first_name', 'last_name', 'league_name', 'team']) {
+    if (!player[requiredParameter]) {
+      return response
+        .status(422)
+        .send({ error: `Expected format: first_name: <string>, last_name: <string>, league_name: <string>, team: <string>. You're missing a "${requiredParameter}" property.`})
+    }
+  }
 
+  database('players').insert(player, 'id')
+    .then(player => {
+      response.status(201).json({ id: player[0] })
+    })
+    .catch(error => {
+      response.status(500).json({ error })
+    })
+})
+
+//first_name, last_name, leage_name, team
 
 // app.get('/api/v1/sports/:id', (request, response) => {
 //   const { id } = request.params
