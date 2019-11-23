@@ -41,6 +41,22 @@ app.get('/api/v1/players', (request, response) => {
     })
 })
 
+app.get('/api/v1/leagues/:id', (request, response) => {
+  database('leagues').where('id', request.params.id).select()
+    .then(leagues => {
+      if (leagues.length) {
+        response.status(200).json(leagues)
+      } else {
+        response.status(404).json({
+          error: `Could not find league with id ${request.params.id}`
+        })
+      }
+    })
+    .catch(error => {
+      response.status(500).json({ error })
+    })
+})
+
 
 
 app.get('/api/v1/sports/:id', (request, response) => {
