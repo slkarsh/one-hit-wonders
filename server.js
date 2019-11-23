@@ -57,10 +57,27 @@ app.get('/api/v1/leagues/:id', (request, response) => {
     })
 })
 
-
-
-app.get('/api/v1/sports/:id', (request, response) => {
-  const { id } = request.params
-
-  const sport = app.locals.info.find(item => item.id === id)
+app.get('/api/v1/players/:id', (request, response) => {
+  // console.log('request', request)
+  database('players').where('id', request.params.id).select()
+    .then(players => {
+      if (players.length) {
+        response.status(200).json(players)
+      } else {
+        response.status(404).json({
+          error: `Could not find player with id ${request.params.id}`
+        })
+      }
+    })
+    .catch(error => {
+      response.status(500).json({ error })
+    })
 })
+
+
+
+// app.get('/api/v1/sports/:id', (request, response) => {
+//   const { id } = request.params
+
+//   const sport = app.locals.info.find(item => item.id === id)
+// })
