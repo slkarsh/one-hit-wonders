@@ -31,11 +31,17 @@ app.get('/api/v1/leagues', (request, response) => {
     })
 })
 
-// app.get('/api/v1/leagues', (request, response) => {
-//   const { info } = app.locals
+app.get('/api/v1/players', (request, response) => {
+  database('players').select()
+    .then((players) => {
+      response.status(200).json(players)
+    })
+    .catch(error => {
+      response.status(500).json({ error })
+    })
+})
 
-//   response.json({ info })
-// })
+
 
 app.get('/api/v1/sports/:id', (request, response) => {
   const { id } = request.params
