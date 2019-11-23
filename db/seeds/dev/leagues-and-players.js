@@ -2,7 +2,6 @@ const leagueData = require('../../../csv/leagueData')
 const playersData = require('../../../data')
 
 const createLeague = (knex, league) => {
-  console.log('league', league)
   return knex('leagues').insert({
     league: league.league,
     sport_name: league.sport

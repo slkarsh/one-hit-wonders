@@ -23,6 +23,5 @@ const cleanPlayers = () => {
 }
 
 const playerData = cleanPlayers();
-console.log('player data', playerData.length)
 
 module.exports = playerData;
