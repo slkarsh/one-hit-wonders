@@ -114,6 +114,20 @@ app.post('/api/v1/players', (request, response) => {
     })
 })
 
+app.delete('/api/v1/players/:id', (request, response) => {
+  const { id } = request.params
+
+  database('players')
+    .where({ id: id })
+    .del()
+    .then(player => {
+      response.status(201).json({ id })
+    })
+    .catch(error => {
+      response.status(422).json({ error })
+    })
+})
+
 //first_name, last_name, leage_name, team
 
 // app.get('/api/v1/sports/:id', (request, response) => {
