@@ -6,13 +6,6 @@ const results = []
 
 const environment = process.env.NODE_ENV || 'development'
 
-// fs.createReadStream('./csv/onehitwonders.csv')
-//   .pipe(csv())
-//   .on('data', (data) => results.push(data))
-//   .on('end', () => {
-//     const example = results.slice(0, 10)
-//     console.log(example)
-//   })
 
 app.set('port', process.env.PORT || 3000)
 app.use(express.json())
