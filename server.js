@@ -74,6 +74,26 @@ app.get('/api/v1/players/:id', (request, response) => {
     })
 })
 
+app.post('/api/v1/leagues', (request, response) => {
+  const league = request.body
+
+  for (let requiredParameter of ['league', 'sport_name']) {
+    if (!league[requiredParameter]) {
+      return response
+        .status(422)
+        .send({ error: `Expected format: { league: <string>, sport_name: ><String>}. You're missing a "${requiredParameter}" property.`})
+    }
+  }
+
+  database('leagues').insert(league, 'id')
+    .then(league => {
+      response.status(201).json({ id: league[0] })
+    })
+    .catch(error => {
+      response.status(500).json({ error })
+    })
+})
+
 
 
 // app.get('/api/v1/sports/:id', (request, response) => {
